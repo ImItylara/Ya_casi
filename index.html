@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6efe8">
+  <title>Una sorpresa en camino</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+    :root{--ink:#292522;--muted:#81766f;--paper:#fbf8f4;--rose:#c66e73;--rose-dark:#a85059;--line:#e9ded5;--green:#577765}
+    *{box-sizing:border-box}body{margin:0;background:#f4ede6;color:var(--ink);font-family:'DM Sans',sans-serif;min-height:100vh;display:grid;place-items:center;padding:26px;overflow-x:hidden}
+    .page{width:min(100%,760px);position:relative}.topline{display:flex;justify-content:space-between;align-items:center;margin:0 6px 14px;color:#8e8178;font-size:11px;letter-spacing:.15em;text-transform:uppercase}.topline b{font-weight:600}.card{background:var(--paper);border:1px solid rgba(139,105,83,.12);border-radius:20px;box-shadow:0 22px 70px #573d2814;overflow:hidden;position:relative}
+    header{padding:37px 48px 20px;text-align:center}.eyebrow{color:var(--rose-dark);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}.title{font:600 clamp(32px,6vw,47px)/1.1 'Playfair Display',serif;letter-spacing:-.025em;margin:12px 0 9px}.subtitle{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+    .journey{padding:10px 50px 16px}.map{height:204px;border-radius:14px;background:radial-gradient(ellipse at 26% 46%,#fffaf4 0,#f9f2eb 58%,#f6eee7 100%);border:1px solid #eee3da;position:relative;overflow:hidden}.map:before,.map:after{content:"";position:absolute;border:1px solid #eadfd6;border-radius:50%;width:470px;height:155px;left:50%;top:54%;transform:translate(-50%,-50%) rotate(-12deg)}.map:after{width:620px;height:230px;transform:translate(-50%,-50%) rotate(12deg);opacity:.55}.route{position:absolute;left:14%;right:14%;top:50%;height:1px;border-top:1.5px dashed #d9b9ad;transform:rotate(-10deg);z-index:1}.route:before{content:"";position:absolute;inset:-5px 0;border-top:1px dashed #eddcd1;transform:translateY(-6px)}
+    .place{position:absolute;top:calc(50% - 28px);z-index:2}.place.start{left:12%}.place.end{right:12%;text-align:right}.dot{width:10px;height:10px;border-radius:50%;background:var(--rose);box-shadow:0 0 0 5px #c66e7320;display:block;margin-bottom:9px}.place.end .dot{margin-left:auto;background:#607d6d;box-shadow:0 0 0 5px #607d6d20}.city{font-size:12px;font-weight:700;letter-spacing:.02em}.airport{font-size:10px;color:#958880;margin-top:3px}.plane{position:absolute;left:15%;top:calc(50% - 18px);font-size:22px;z-index:3;filter:drop-shadow(0 3px 3px #60463325);transform:rotate(-10deg)}.plane.go{animation:fly 4.8s cubic-bezier(.2,.65,.25,1) forwards}@keyframes fly{0%{left:15%;top:calc(50% - 18px);opacity:0;transform:rotate(-10deg) scale(.8)}5%{opacity:1}43%{left:48%;top:calc(50% - 48px);transform:rotate(-10deg)}49%{left:46%;top:calc(50% - 51px)}55%{left:50%;top:calc(50% - 45px)}61%{left:46%;top:calc(50% - 50px)}67%{left:50%;top:calc(50% - 44px)}73%{left:48%;top:calc(50% - 48px)}100%{left:81%;top:calc(50% - 75px);opacity:1;transform:rotate(-10deg) scale(1.06)}}.route-label{position:absolute;left:50%;top:66%;transform:translateX(-50%);font-size:10px;color:#988981;background:#faf6f1;border-radius:99px;padding:5px 10px;z-index:2}.meta{display:flex;justify-content:center;align-items:center;gap:9px;margin:15px 0 0;color:#6f665f;font-size:12px}.meta .sep{color:#c5b5a9}
+    .reveal{padding:1px 48px 37px;text-align:center}.note{font:500 19px/1.45 'Playfair Display',serif;color:#66554c;margin:0 auto 17px;max-width:440px}.cta{border:0;border-radius:99px;background:var(--rose);color:#fff;padding:13px 22px;font:600 13px 'DM Sans',sans-serif;letter-spacing:.01em;cursor:pointer;box-shadow:0 6px 15px #c66e7330;transition:transform .2s,background .2s}.cta:hover{background:var(--rose-dark);transform:translateY(-1px)}.cta:focus-visible,input:focus-visible{outline:3px solid #dba3a5;outline-offset:3px}.smallhint{font-size:10px;color:#a49990;margin:11px 0 0}
+    .ticket{display:none;text-align:left;margin:23px auto 0;max-width:520px;animation:appear .7s both}.ticket.show{display:block}@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.ticket-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.ticket-title{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--green)}.confirmed{font-size:10px;color:var(--green);display:flex;align-items:center;gap:5px}.confirmed:before{content:"";width:6px;height:6px;background:#6a9a78;border-radius:50%}.ticket-body{border:1px solid var(--line);border-radius:13px;padding:18px;background:white;position:relative;overflow:hidden}.ticket-body:before,.ticket-body:after{content:"";position:absolute;top:50%;width:16px;height:16px;border-radius:50%;background:var(--paper);border:1px solid var(--line)}.ticket-body:before{left:-9px}.ticket-body:after{right:-9px}.ticket-cities{display:flex;align-items:center;justify-content:space-between;gap:12px}.ticket-city strong{display:block;font:600 27px 'Playfair Display',serif}.ticket-city small{font-size:10px;color:var(--muted)}.airpath{flex:1;text-align:center;color:#c18a7f;font-size:15px}.airpath small{display:block;color:#a49a92;font-size:9px;letter-spacing:.08em;margin-top:4px}.flight-details{border-top:1px dashed var(--line);margin-top:15px;padding-top:12px;display:flex;justify-content:space-between;gap:8px;color:#82766d;font-size:10px}.flight-details b{display:block;color:#413b37;font-size:11px;margin-top:4px;font-weight:600}.ticket-image{display:none;width:100%;max-height:320px;object-fit:contain;border:1px solid var(--line);border-radius:10px;background:#fff;margin-top:12px}.ticket-image.show{display:block}.upload{display:inline-flex;align-items:center;gap:6px;color:#8e625d;font-size:11px;margin-top:12px;cursor:pointer}.upload:hover{color:var(--rose-dark)}.upload input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.editrow{display:none;justify-content:center;gap:10px;margin:13px 0 0}.editrow.show{display:flex}.editrow button{border:0;background:none;color:#8b7d73;text-decoration:underline;text-underline-offset:3px;font:500 10px 'DM Sans',sans-serif;cursor:pointer}
+    .footer{padding:12px 48px 17px;border-top:1px solid #f0e8e1;display:flex;justify-content:space-between;color:#aa9f96;font-size:9px;letter-spacing:.07em}
+    @media(max-width:600px){body{padding:13px}.topline{font-size:9px}header{padding:30px 22px 17px}.journey{padding:9px 18px 13px}.map{height:180px}.place.start{left:9%}.place.end{right:9%}.route{left:16%;right:16%}.plane{left:15%}.reveal{padding:1px 19px 28px}.footer{padding:12px 18px}.ticket-body{padding:15px}.fields{grid-template-columns:1fr}.fields input.wide{grid-column:auto}.ticket-city strong{font-size:23px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <div class="topline"><b>✳ una pequeña sorpresa</b><span>hecha con cariño</span></div>
+  <section class="card" aria-live="polite">
+    <header>
+      <div class="eyebrow">algo lindo está en camino</div>
+      <h1 class="title">Tengo algo que contarle…</h1>
+      <p class="subtitle">Hay una distancia entre nosotros que pronto va a ser un poquito más corta.</p>
+    </header>
+    <section class="journey" aria-label="Ruta del viaje">
+      <div class="map">
+        <div class="route"></div>
+        <div class="place start"><span class="dot"></span><div class="city" id="fromCity">LIMA</div><div class="airport" id="fromAirport">PERÚ</div></div>
+        <div class="place end"><span class="dot"></span><div class="city" id="toCity">HONDURAS</div><div class="airport" id="toAirport">ALLÁ VOY</div></div>
+        <div class="plane" id="plane" aria-label="Avión en camino">✈</div>
+        <div class="route-label">cada vez más cerca</div>
+      </div>
+      <div class="meta"><span id="dateLabel">MUY PRONTO</span><span class="sep">·</span><span>un abrazo en persona</span></div>
+    </section>
+    <section class="reveal">
+      <button class="cta" id="revealBtn">Abrir mi sorpresa <span aria-hidden="true">→</span></button>
+      <p class="smallhint" id="hint">toca aquí, que ya casi llegamos</p>
+      <div class="ticket" id="ticket">
+        <div class="ticket-head"><span class="ticket-title">Tu sorpresa tiene alas</span><span class="confirmed">Vuelo reservado</span></div>
+        <div class="ticket-body" id="ticketBody">
+          <div class="ticket-cities"><div class="ticket-city"><strong id="ticketFrom">LIM</strong><small id="ticketFromName">Lima</small></div><div class="airpath">✈<small>UN SOLO DESTINO: TÚ</small></div><div class="ticket-city" style="text-align:right"><strong id="ticketTo">HN</strong><small id="ticketToName">Honduras</small></div></div>
+          <div class="flight-details"><div>FECHA<b id="ticketDate">Muy pronto</b></div><div>ESTADO<b>Confirmado ♡</b></div><div>ASIENTO<b>A tu lado</b></div></div>
+        </div>
+        <img class="ticket-image" id="ticketImage" src="captura-vuelo.png" alt="Captura de la confirmación del vuelo">
+        <label class="upload">＋ Agregar captura real de la reserva<input id="imageUpload" type="file" accept="image/*"></label>
+        <div class="editrow" id="editrow"><button id="restartBtn">Ver la animación otra vez</button></div>
+      </div>
+    </section>
+    <footer class="footer"><span>UNA AVENTURA DE DOS</span><span>CON MUCHO AMOR ♡</span></footer>
+  </section>
+</main>
+<script>
+  const $=id=>document.getElementById(id);
+  const ticket=$('ticket'), btn=$('revealBtn'), plane=$('plane');
+  const savedImage=$('ticketImage');savedImage.addEventListener('load',()=>savedImage.classList.add('show'));savedImage.addEventListener('error',()=>savedImage.classList.remove('show'));
+  btn.addEventListener('click',()=>{btn.disabled=true;btn.textContent='En camino…';plane.classList.remove('go');void plane.offsetWidth;plane.classList.add('go');setTimeout(()=>{ticket.classList.add('show');$('hint').hidden=true;btn.hidden=true;$('editrow').classList.add('show');ticket.scrollIntoView({behavior:'smooth',block:'nearest'});},4800)});
+  $('restartBtn').addEventListener('click',()=>{ticket.classList.remove('show');btn.hidden=false;btn.disabled=false;btn.innerHTML='Abrir mi sorpresa <span aria-hidden="true">→</span>';$('hint').hidden=false;$('editrow').classList.remove('show');plane.classList.remove('go');window.scrollTo({top:0,behavior:'smooth'})});
+  $('imageUpload').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const img=$('ticketImage');img.src=URL.createObjectURL(f);img.classList.add('show')});
+</script>
+</body>
+</html>
+
+
